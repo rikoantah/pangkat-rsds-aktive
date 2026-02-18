@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenaikan Pangkat</title>
+
+<style>
+:root{
+  --primary:#2563eb;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header{
+  background:linear-gradient(135deg,var(--primary),#1e40af);
+  color:#fff;
+  padding:20px 16px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:1.4rem;
+  font-weight:700;
+}
+
+.search-box{
+  padding:14px;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+.search-box input{
+  width:100%;
+  padding:12px 14px;
+  font-size:15px;
+  border-radius:10px;
+  border:1px solid #cbd5f5;
+  outline:none;
+}
+
+.container{
+  padding:14px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  animation:fade .3s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+
+.card h2{
+  margin:0 0 6px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.row{
+  font-size:14px;
+  margin:4px 0;
+}
+
+.row strong{
+  color:#1e293b;
+}
+
+.card a{
+  display:inline-block;
+  margin-top:10px;
+  text-decoration:none;
+  color:#fff;
+  background:var(--primary);
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Kenaikan Pangkat</h1>
+</header>
+
+<div class="search-box">
+  <input type="text" id="search" placeholder="Cari nama pegawai...">
+</div>
+
+<div class="container" id="cards"></div>
+
+<script>
+const SHEET_URL =
+"https://docs.google.com/spreadsheets/d/14U992fvIMzKTnEL8RZss0tQgl_CPP9ctzvrzKRzL-oM/gviz/tq?tqx=out:json&gid=969197999";
+
+let dataPegawai = [];
+
+fetch(SHEET_URL)
+.then(r => r.text())
+.then(t => JSON.parse(t.substring(47).slice(0,-2)))
+.then(json => {
+  const rows = json.table.rows;
+
+  dataPegawai = rows.map(r => ({
+    nama: r.c[1]?.v || "",
+    nip: r.c[2]?.v || "",
+    gol: r.c[3]?.v || "",
+    jabatan: r.c[4]?.v || "",
+    periode: r.c[7]?.v || "",
+    folder: r.c[11]?.v || "",
+    catatan: r.c[12]?.v || ""
+  })).reverse(); // 🔥 baris terakhir jadi paling atas
+
+  render(dataPegawai);
+});
+
+function render(list){
+  const el = document.getElementById("cards");
+  el.innerHTML = "";
+
+  list.forEach(d => {
+    el.innerHTML += `
+      <div class="card">
+        <h2>${d.nama}</h2>
+        <div class="meta">${d.jabatan}</div>
+
+        <div class="row"><strong>NIP:</strong> ${d.nip}</div>
+        <div class="row"><strong>Golongan:</strong> ${d.gol}</div>
+        <div class="row"><strong>Periode:</strong> ${d.periode}</div>
+        <div class="row"><strong>Catatan:</strong> ${d.catatan}</div>
+
+        ${d.folder ? `<a href="${d.folder}" target="_blank">📁 Buka Folder</a>` : ""}
+      </div>
+    `;
+  });
+}
+
+// 🔍 Auto-complete pintar (partial match)
+document.getElementById("search").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase().trim();
+  if(!q) return render(dataPegawai);
+
+  const parts = q.split(" ");
+
+  const filtered = dataPegawai.filter(d =>
+    parts.every(p => d.nama.toLowerCase().includes(p))
+  );
+
+  render(filtered);
+});
+</script>
+
+</body>
+</html>
