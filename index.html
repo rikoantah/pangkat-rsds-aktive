@@ -8,6 +8,7 @@
 <style>
 :root{
   --primary:#2563eb;
+  --secondary:#16a34a;
   --bg:#f1f5f9;
   --card:#ffffff;
   --text:#0f172a;
@@ -23,10 +24,12 @@ body{
   color:var(--text);
 }
 
+/* HEADER */
 header{
   background:linear-gradient(135deg,var(--primary),#1e40af);
   color:#fff;
-  padding:20px 16px;
+  padding:16px;
+  position:relative;
   text-align:center;
 }
 
@@ -36,6 +39,46 @@ header h1{
   font-weight:700;
 }
 
+/* BACK BUTTON */
+.back-btn{
+  position:absolute;
+  left:12px;
+  top:14px;
+  background:rgba(255,255,255,.2);
+  color:#fff;
+  padding:8px 10px;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:13px;
+}
+
+/* ACTION BUTTONS */
+.actions{
+  padding:14px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.action-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  color:#fff;
+}
+
+.action-blue{background:var(--primary)}
+.action-green{background:var(--secondary)}
+.action-wa{background:#22c55e}
+.action-gray{background:#94a3b8}
+
+/* SEARCH */
 .search-box{
   padding:14px;
   background:#fff;
@@ -54,6 +97,7 @@ header h1{
   outline:none;
 }
 
+/* CARD */
 .container{
   padding:14px;
   display:grid;
@@ -66,12 +110,6 @@ header h1{
   border-radius:14px;
   padding:14px;
   box-shadow:0 6px 18px rgba(0,0,0,.06);
-  animation:fade .3s ease;
-}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
 }
 
 .card h2{
@@ -91,10 +129,6 @@ header h1{
   margin:4px 0;
 }
 
-.row strong{
-  color:#1e293b;
-}
-
 .card a{
   display:inline-block;
   margin-top:10px;
@@ -111,8 +145,36 @@ header h1{
 <body>
 
 <header>
+  <a class="back-btn" href="https://rikoantah.github.io/Web-Utama-UMPAR/">← Back</a>
   <h1>Kenaikan Pangkat</h1>
 </header>
+
+<!-- ACTION BUTTONS -->
+<div class="actions">
+  <a class="action-btn action-blue" target="_blank"
+     href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
+     📄 Persyaratan
+  </a>
+
+  <a class="action-btn action-green" target="_blank"
+     href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
+     ✍️ Surat Keterangan Atasan
+  </a>
+
+  <div class="action-btn action-gray">
+     ⏳ Pengajuan Rekom OPD (Menyusul)
+  </div>
+
+  <a class="action-btn action-blue" target="_blank"
+     href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
+     🚀 Ajukan Pangkat BKD
+  </a>
+
+  <a class="action-btn action-wa" target="_blank"
+     href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
+     💬 Gabung Group WhatsApp
+  </a>
+</div>
 
 <div class="search-box">
   <input type="text" id="search" placeholder="Cari nama pegawai...">
@@ -140,7 +202,7 @@ fetch(SHEET_URL)
     periode: r.c[7]?.v || "",
     folder: r.c[11]?.v || "",
     catatan: r.c[12]?.v || ""
-  })).reverse(); // 🔥 baris terakhir jadi paling atas
+  })).reverse();
 
   render(dataPegawai);
 });
@@ -154,25 +216,21 @@ function render(list){
       <div class="card">
         <h2>${d.nama}</h2>
         <div class="meta">${d.jabatan}</div>
-
         <div class="row"><strong>NIP:</strong> ${d.nip}</div>
         <div class="row"><strong>Golongan:</strong> ${d.gol}</div>
         <div class="row"><strong>Periode:</strong> ${d.periode}</div>
         <div class="row"><strong>Catatan:</strong> ${d.catatan}</div>
-
         ${d.folder ? `<a href="${d.folder}" target="_blank">📁 Buka Folder</a>` : ""}
       </div>
     `;
   });
 }
 
-// 🔍 Auto-complete pintar (partial match)
 document.getElementById("search").addEventListener("input", e => {
   const q = e.target.value.toLowerCase().trim();
   if(!q) return render(dataPegawai);
 
   const parts = q.split(" ");
-
   const filtered = dataPegawai.filter(d =>
     parts.every(p => d.nama.toLowerCase().includes(p))
   );
