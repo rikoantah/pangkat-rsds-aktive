@@ -195,15 +195,11 @@ fetch(SHEET_URL)
 .then(json => {
   const rows = json.table.rows;
 
-  dataPegawai = rows.map(r => ({
-    nama: r.c[1]?.v || "",
-    nip: r.c[2]?.v || "",
-    gol: r.c[3]?.v || "",
-    jabatan: r.c[4]?.v || "",
-    periode: r.c[7]?.v || "",
-    folder: r.c[11]?.v || "",
-    catatan: r.c[12]?.v || ""
-  })).reverse();
+dataPegawai = rows.map(r => ({
+  nama: r.c[1]?.v || "",
+  catatan: r.c[12]?.v || "",
+  folder: r.c[11]?.v || ""
+})).reverse();
 
   render(dataPegawai);
 });
@@ -215,13 +211,17 @@ function render(list){
   list.forEach(d => {
     el.innerHTML += `
       <div class="card">
-        <h2>${d.nama}</h2>
-        <div class="meta">${d.jabatan}</div>
-        <div class="row"><strong>NIP:</strong> ${d.nip}</div>
-        <div class="row"><strong>Golongan:</strong> ${d.gol}</div>
-        <div class="row"><strong>Periode:</strong> ${d.periode}</div>
-        <div class="row"><strong>Catatan:</strong> ${d.catatan}</div>
-        ${d.folder ? `<a href="${d.folder}" target="_blank">📁 Buka Folder</a>` : ""}
+        <h2>${d.nama || "-"}</h2>
+
+        <div class="row">
+          <strong>Catatan:</strong>
+          ${d.catatan || "Menunggu Verifikasi"}
+        </div>
+
+        ${d.folder
+          ? `<a href="${d.folder}" target="_blank">📁 Buka Folder</a>`
+          : ""
+        }
       </div>
     `;
   });
