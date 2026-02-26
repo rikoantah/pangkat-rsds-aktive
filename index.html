@@ -7,13 +7,15 @@
 
 <style>
 :root{
-  --blue:#2563eb;
-  --green:#16a34a;
-  --purple:#7c3aed;
+  --primary:#2563eb;
+  --secondary:#16a34a;
+  --accent:#0ea5e9;
   --wa:#22c55e;
-  --gray:#64748b;
-  --bg1:#0f172a;
-  --bg2:#1e293b;
+  --gray:#e5e7eb;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
 }
 
 *{box-sizing:border-box}
@@ -21,14 +23,42 @@
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:linear-gradient(160deg,var(--bg1),var(--bg2));
-  color:#fff;
+  background:var(--bg);
+  color:var(--text);
   min-height:100vh;
+}
+
+/* TOP BAR */
+.topbar{
+  position:sticky;
+  top:0;
+  background:#ffffff;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  z-index:10;
+}
+
+.back-btn{
+  text-decoration:none;
+  background:var(--primary);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.title{
+  font-size:15px;
+  font-weight:800;
 }
 
 /* HEADER */
 .header{
-  padding:28px 20px 18px;
+  padding:26px 18px 10px;
   text-align:center;
 }
 
@@ -36,30 +66,28 @@ body{
   margin:0;
   font-size:1.6rem;
   font-weight:800;
-  letter-spacing:.5px;
 }
 
 .header p{
   margin-top:6px;
   font-size:13px;
-  opacity:.85;
+  color:var(--muted);
 }
 
-/* GLASS CARD */
+/* CARD */
 .card{
   margin:16px;
-  padding:20px;
-  border-radius:22px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);
-  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  padding:18px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-/* GRID BUTTON */
-.grid{
+/* BUTTON LIST */
+.list{
   display:grid;
   grid-template-columns:1fr;
-  gap:14px;
+  gap:12px;
 }
 
 .btn{
@@ -67,12 +95,12 @@ body{
   align-items:center;
   gap:14px;
   padding:16px;
-  border-radius:18px;
+  border-radius:16px;
   text-decoration:none;
-  color:#fff;
-  font-weight:700;
   font-size:15px;
-  transition:.25s ease;
+  font-weight:700;
+  color:#fff;
+  transition:.2s ease;
 }
 
 .btn span{
@@ -81,59 +109,45 @@ body{
 
 .btn small{
   display:block;
-  font-weight:500;
   font-size:12px;
-  opacity:.85;
+  font-weight:500;
+  opacity:.9;
 }
 
 .btn:hover{
-  transform:translateY(-3px) scale(1.01);
-  box-shadow:0 12px 25px rgba(0,0,0,.35);
+  transform:translateY(-2px);
 }
 
-/* COLORS */
-.blue{background:linear-gradient(135deg,#3b82f6,#2563eb)}
-.green{background:linear-gradient(135deg,#22c55e,#16a34a)}
-.purple{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
-.gray{background:linear-gradient(135deg,#94a3b8,#64748b)}
-.wa{background:linear-gradient(135deg,#4ade80,#22c55e)}
+/* COLOR VARIANTS */
+.blue{background:linear-gradient(135deg,#60a5fa,#2563eb)}
+.green{background:linear-gradient(135deg,#4ade80,#16a34a)}
+.sky{background:linear-gradient(135deg,#7dd3fc,#0ea5e9)}
+.gray{background:linear-gradient(135deg,#cbd5e1,#64748b)}
+.wa{background:linear-gradient(135deg,#86efac,#22c55e)}
 
-/* FOOTER NOTE */
+/* NOTE */
 .note{
+  margin-top:14px;
   text-align:center;
-  margin-top:18px;
   font-size:12px;
-  opacity:.8;
-}
-
-/* FLOATING HOME */
-.fab{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:linear-gradient(135deg,#60a5fa,#2563eb);
-  color:#fff;
-  width:54px;
-  height:54px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  text-decoration:none;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
+  color:var(--muted);
 }
 
 /* PRINT */
 @media print{
-  body{background:#fff;color:#000}
-  .fab{display:none}
-  .card{background:#fff;color:#000}
+  body{background:#fff}
+  .topbar{position:relative;box-shadow:none}
 }
 </style>
 </head>
 
 <body>
+
+<!-- TOP BAR WITH BACK -->
+<div class="topbar">
+  <a class="back-btn" href="https://rikoantah.github.io/Web-Utama-UMPAR/">← Back</a>
+  <div class="title">Menu Utama</div>
+</div>
 
 <div class="header">
   <h1>Kenaikan Pangkat</h1>
@@ -142,14 +156,14 @@ body{
 
 <div class="card">
 
-  <div class="grid">
+  <div class="list">
 
     <a class="btn blue" target="_blank"
        href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
       <span>📄</span>
       <div>
         Persyaratan
-        <small>Daftar lengkap dokumen</small>
+        <small>Daftar berkas wajib</small>
       </div>
     </a>
 
@@ -167,16 +181,16 @@ body{
       <span>⏳</span>
       <div>
         Rekomendasi OPD
-        <small>Pengajuan internal</small>
+        <small>Proses internal</small>
       </div>
     </a>
 
-    <a class="btn purple" target="_blank"
+    <a class="btn sky" target="_blank"
        href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
       <span>🚀</span>
       <div>
         Ajukan ke BKD
-        <small>Pantau status & catatan</small>
+        <small>Pantau status pengajuan</small>
       </div>
     </a>
 
@@ -192,13 +206,10 @@ body{
   </div>
 
   <div class="note">
-    Pastikan berkas lengkap sebelum mengajukan.<br>
-    Simpan halaman ini sebagai panduan.
+    Pastikan seluruh persyaratan lengkap sebelum mengajukan.
   </div>
 
 </div>
-
-<a class="fab" href="https://rikoantah.github.io/Web-Utama-UMPAR/">⌂</a>
 
 </body>
 </html>
