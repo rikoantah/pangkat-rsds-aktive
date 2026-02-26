@@ -3,16 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenaikan Pangkat</title>
+<title>Layanan Kenaikan Pangkat</title>
 
 <style>
 :root{
   --primary:#2563eb;
   --secondary:#16a34a;
-  --bg:#f1f5f9;
+  --accent:#7c3aed;
+  --wa:#22c55e;
+  --gray:#64748b;
+  --bg:#f8fafc;
   --card:#ffffff;
   --text:#0f172a;
-  --muted:#64748b;
 }
 
 *{box-sizing:border-box}
@@ -26,118 +28,88 @@ body{
 
 /* HEADER */
 header{
-  background:linear-gradient(135deg,var(--primary),#1e40af);
+  background:linear-gradient(135deg,var(--primary),var(--accent));
   color:#fff;
-  padding:16px;
-  position:relative;
+  padding:32px 20px;
   text-align:center;
 }
 
 header h1{
   margin:0;
-  font-size:1.4rem;
-  font-weight:700;
+  font-size:1.8rem;
+  font-weight:800;
+  letter-spacing:.5px;
 }
 
-/* BACK BUTTON */
-.back-btn{
-  position:absolute;
-  left:12px;
-  top:14px;
-  background:rgba(255,255,255,.2);
-  color:#fff;
-  padding:8px 10px;
-  border-radius:10px;
-  text-decoration:none;
-  font-size:13px;
+header p{
+  margin-top:8px;
+  font-size:14px;
+  opacity:.9;
 }
 
-/* ACTION BUTTONS */
+/* MAIN CARD */
+.main{
+  max-width:720px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* BUTTON GRID */
 .actions{
-  padding:14px;
   display:grid;
   grid-template-columns:1fr;
-  gap:10px;
+  gap:14px;
 }
 
 .action-btn{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  padding:12px;
-  border-radius:12px;
-  font-size:14px;
-  font-weight:600;
-  text-decoration:none;
-  color:#fff;
-}
-
-.action-blue{background:var(--primary)}
-.action-green{background:var(--secondary)}
-.action-wa{background:#22c55e}
-.action-gray{background:#94a3b8}
-
-/* SEARCH */
-.search-box{
-  padding:14px;
-  background:#fff;
-  position:sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 2px 6px rgba(0,0,0,.05);
-}
-
-.search-box input{
-  width:100%;
-  padding:12px 14px;
-  font-size:15px;
-  border-radius:10px;
-  border:1px solid #cbd5f5;
-  outline:none;
-}
-
-/* CARD */
-.container{
-  padding:14px;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-}
-
-.card{
-  background:var(--card);
+  gap:10px;
+  padding:16px;
   border-radius:14px;
-  padding:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
-
-.card h2{
-  margin:0 0 6px;
-  font-size:16px;
+  font-size:15px;
   font-weight:700;
-}
-
-.meta{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:8px;
-}
-
-.row{
-  font-size:14px;
-  margin:4px 0;
-}
-
-.card a{
-  display:inline-block;
-  margin-top:10px;
   text-decoration:none;
   color:#fff;
-  background:var(--primary);
-  padding:8px 12px;
-  border-radius:8px;
+  letter-spacing:.3px;
+  transition:.2s ease;
+}
+
+.action-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.blue{background:var(--primary)}
+.green{background:var(--secondary)}
+.purple{background:var(--accent)}
+.gray{background:var(--gray)}
+.wa{background:var(--wa)}
+
+/* FOOTER NOTE */
+.note{
+  margin-top:20px;
+  text-align:center;
   font-size:13px;
+  color:#475569;
+}
+
+/* PRINT MODE */
+@media print{
+  body{background:#fff}
+  header{border-radius:0}
+  .action-btn{
+    box-shadow:none;
+    transform:none;
+  }
 }
 </style>
 </head>
@@ -145,100 +117,49 @@ header h1{
 <body>
 
 <header>
-  <a class="back-btn" href="https://rikoantah.github.io/Web-Utama-UMPAR/">← Back</a>
-  <h1>Kenaikan Pangkat</h1>
+  <h1>LAYANAN KENAIKAN PANGKAT</h1>
+  <p>RSUD dr. Soedarso • BKD • OPD Terkait</p>
 </header>
 
-<!-- ACTION BUTTONS -->
-<div class="actions">
-  <a class="action-btn action-blue" target="_blank"
-     href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
-     📄 Persyaratan
-  </a>
+<main class="main">
+  <div class="card">
 
-  <a class="action-btn action-green" target="_blank"
-     href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-     ✍️ Surat Keterangan Atasan langsung
-  </a>
+    <div class="actions">
 
-<a class="action-btn action-gray"
-   href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-   ⏳ Pengajuan Rekom OPD
-</a>
+      <a class="action-btn blue" target="_blank"
+         href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
+        📄 Persyaratan Kenaikan Pangkat
+      </a>
 
-  <a class="action-btn action-blue" target="_blank"
-     href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-     🚀 Ajukan Pangkat BKD-Dan Pantau Catatnya
-  </a>
+      <a class="action-btn green" target="_blank"
+         href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
+        ✍️ Surat Keterangan Atasan Langsung
+      </a>
 
-  <a class="action-btn action-wa" target="_blank"
-     href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
-     💬 Gabung Group WhatsApp
-  </a>
-</div>
+      <a class="action-btn gray" target="_blank"
+         href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
+        ⏳ Pengajuan Rekomendasi OPD
+      </a>
 
-<div class="search-box">
-  <input type="text" id="search" placeholder="Cari nama pegawai...">
-</div>
+      <a class="action-btn purple" target="_blank"
+         href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
+        🚀 Ajukan Pangkat ke BKD & Pantau Status
+      </a>
 
-<div class="container" id="cards"></div>
+      <a class="action-btn wa" target="_blank"
+         href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
+        💬 Grup Informasi WhatsApp
+      </a>
 
-<script>
-const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/14U992fvIMzKTnEL8RZss0tQgl_CPP9ctzvrzKRzL-oM/gviz/tq?tqx=out:json&gid=969197999";
+    </div>
 
-let dataPegawai = [];
+    <div class="note">
+      Pastikan seluruh persyaratan lengkap sebelum mengajukan.<br>
+      Simpan halaman ini atau cetak sebagai panduan resmi.
+    </div>
 
-fetch(SHEET_URL)
-.then(r => r.text())
-.then(t => JSON.parse(t.substring(47).slice(0,-2)))
-.then(json => {
-  const rows = json.table.rows;
-
-dataPegawai = rows.map(r => ({
-  nama: r.c[1]?.v || "",
-  catatan: r.c[12]?.v || "",
-  folder: r.c[11]?.v || ""
-})).reverse();
-
-  render(dataPegawai);
-});
-
-function render(list){
-  const el = document.getElementById("cards");
-  el.innerHTML = "";
-
-  list.forEach(d => {
-    el.innerHTML += `
-      <div class="card">
-        <h2>${d.nama || "-"}</h2>
-
-        <div class="row">
-          <strong>Catatan:</strong>
-          ${d.catatan || "Menunggu Verifikasi"}
-        </div>
-
-        ${d.folder
-          ? `<a href="${d.folder}" target="_blank">📁 Buka Folder</a>`
-          : ""
-        }
-      </div>
-    `;
-  });
-}
-
-document.getElementById("search").addEventListener("input", e => {
-  const q = e.target.value.toLowerCase().trim();
-  if(!q) return render(dataPegawai);
-
-  const parts = q.split(" ");
-  const filtered = dataPegawai.filter(d =>
-    parts.every(p => d.nama.toLowerCase().includes(p))
-  );
-
-  render(filtered);
-});
-</script>
+  </div>
+</main>
 
 </body>
 </html>
