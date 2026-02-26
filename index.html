@@ -7,14 +7,13 @@
 
 <style>
 :root{
-  --primary:#2563eb;
-  --secondary:#16a34a;
-  --accent:#7c3aed;
+  --blue:#2563eb;
+  --green:#16a34a;
+  --purple:#7c3aed;
   --wa:#22c55e;
   --gray:#64748b;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --text:#0f172a;
+  --bg1:#0f172a;
+  --bg2:#1e293b;
 }
 
 *{box-sizing:border-box}
@@ -22,144 +21,184 @@
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:var(--bg);
-  color:var(--text);
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));
+  color:#fff;
+  min-height:100vh;
 }
 
 /* HEADER */
-header{
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff;
-  padding:32px 20px;
+.header{
+  padding:28px 20px 18px;
   text-align:center;
 }
 
-header h1{
+.header h1{
   margin:0;
-  font-size:1.8rem;
+  font-size:1.6rem;
   font-weight:800;
   letter-spacing:.5px;
 }
 
-header p{
-  margin-top:8px;
-  font-size:14px;
-  opacity:.9;
+.header p{
+  margin-top:6px;
+  font-size:13px;
+  opacity:.85;
 }
 
-/* MAIN CARD */
-.main{
-  max-width:720px;
-  margin:24px auto;
-  padding:0 16px;
-}
-
+/* GLASS CARD */
 .card{
-  background:var(--card);
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  margin:16px;
+  padding:20px;
+  border-radius:22px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
 }
 
-/* BUTTON GRID */
-.actions{
+/* GRID BUTTON */
+.grid{
   display:grid;
   grid-template-columns:1fr;
   gap:14px;
 }
 
-.action-btn{
+.btn{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:10px;
+  gap:14px;
   padding:16px;
-  border-radius:14px;
-  font-size:15px;
-  font-weight:700;
+  border-radius:18px;
   text-decoration:none;
   color:#fff;
-  letter-spacing:.3px;
-  transition:.2s ease;
+  font-weight:700;
+  font-size:15px;
+  transition:.25s ease;
 }
 
-.action-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(0,0,0,.15);
+.btn span{
+  font-size:22px;
 }
 
-.blue{background:var(--primary)}
-.green{background:var(--secondary)}
-.purple{background:var(--accent)}
-.gray{background:var(--gray)}
-.wa{background:var(--wa)}
+.btn small{
+  display:block;
+  font-weight:500;
+  font-size:12px;
+  opacity:.85;
+}
+
+.btn:hover{
+  transform:translateY(-3px) scale(1.01);
+  box-shadow:0 12px 25px rgba(0,0,0,.35);
+}
+
+/* COLORS */
+.blue{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.green{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.purple{background:linear-gradient(135deg,#a78bfa,#7c3aed)}
+.gray{background:linear-gradient(135deg,#94a3b8,#64748b)}
+.wa{background:linear-gradient(135deg,#4ade80,#22c55e)}
 
 /* FOOTER NOTE */
 .note{
-  margin-top:20px;
   text-align:center;
-  font-size:13px;
-  color:#475569;
+  margin-top:18px;
+  font-size:12px;
+  opacity:.8;
 }
 
-/* PRINT MODE */
+/* FLOATING HOME */
+.fab{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:linear-gradient(135deg,#60a5fa,#2563eb);
+  color:#fff;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* PRINT */
 @media print{
-  body{background:#fff}
-  header{border-radius:0}
-  .action-btn{
-    box-shadow:none;
-    transform:none;
-  }
+  body{background:#fff;color:#000}
+  .fab{display:none}
+  .card{background:#fff;color:#000}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>LAYANAN KENAIKAN PANGKAT</h1>
-  <p>RSUD dr. Soedarso • BKD • OPD Terkait</p>
-</header>
+<div class="header">
+  <h1>Kenaikan Pangkat</h1>
+  <p>Layanan Digital Kepegawaian</p>
+</div>
 
-<main class="main">
-  <div class="card">
+<div class="card">
 
-    <div class="actions">
+  <div class="grid">
 
-      <a class="action-btn blue" target="_blank"
-         href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
-        📄 Persyaratan Kenaikan Pangkat
-      </a>
+    <a class="btn blue" target="_blank"
+       href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/edit">
+      <span>📄</span>
+      <div>
+        Persyaratan
+        <small>Daftar lengkap dokumen</small>
+      </div>
+    </a>
 
-      <a class="action-btn green" target="_blank"
-         href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-        ✍️ Surat Keterangan Atasan Langsung
-      </a>
+    <a class="btn green" target="_blank"
+       href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
+      <span>✍️</span>
+      <div>
+        Surat Atasan Langsung
+        <small>Isi & cetak otomatis</small>
+      </div>
+    </a>
 
-      <a class="action-btn gray" target="_blank"
-         href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-        ⏳ Pengajuan Rekomendasi OPD
-      </a>
+    <a class="btn gray" target="_blank"
+       href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
+      <span>⏳</span>
+      <div>
+        Rekomendasi OPD
+        <small>Pengajuan internal</small>
+      </div>
+    </a>
 
-      <a class="action-btn purple" target="_blank"
-         href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-        🚀 Ajukan Pangkat ke BKD & Pantau Status
-      </a>
+    <a class="btn purple" target="_blank"
+       href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
+      <span>🚀</span>
+      <div>
+        Ajukan ke BKD
+        <small>Pantau status & catatan</small>
+      </div>
+    </a>
 
-      <a class="action-btn wa" target="_blank"
-         href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
-        💬 Grup Informasi WhatsApp
-      </a>
-
-    </div>
-
-    <div class="note">
-      Pastikan seluruh persyaratan lengkap sebelum mengajukan.<br>
-      Simpan halaman ini atau cetak sebagai panduan resmi.
-    </div>
+    <a class="btn wa" target="_blank"
+       href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
+      <span>💬</span>
+      <div>
+        Grup WhatsApp
+        <small>Info & pengumuman</small>
+      </div>
+    </a>
 
   </div>
-</main>
+
+  <div class="note">
+    Pastikan berkas lengkap sebelum mengajukan.<br>
+    Simpan halaman ini sebagai panduan.
+  </div>
+
+</div>
+
+<a class="fab" href="https://rikoantah.github.io/Web-Utama-UMPAR/">⌂</a>
 
 </body>
 </html>
