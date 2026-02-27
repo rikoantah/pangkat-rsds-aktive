@@ -28,34 +28,6 @@ body{
   min-height:100vh;
 }
 
-/* TOP BAR */
-.topbar{
-  position:sticky;
-  top:0;
-  background:#ffffff;
-  padding:14px 16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  z-index:10;
-}
-
-.back-btn{
-  text-decoration:none;
-  background:var(--primary);
-  color:#fff;
-  padding:8px 14px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
-}
-
-.title{
-  font-size:15px;
-  font-weight:800;
-}
-
 /* HEADER */
 .header{
   padding:26px 18px 10px;
@@ -72,6 +44,45 @@ body{
   margin-top:6px;
   font-size:13px;
   color:var(--muted);
+}
+
+/* PENGUMUMAN */
+.announcement{
+  margin:18px 16px 0;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(37,99,235,.35);
+  position:relative;
+  overflow:hidden;
+}
+
+.announcement h2{
+  margin:0;
+  font-size:18px;
+  font-weight:800;
+}
+
+.announcement .period{
+  margin-top:8px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.announcement .date{
+  margin-top:6px;
+  font-size:13px;
+  opacity:.95;
+}
+
+.announcement .warning{
+  margin-top:14px;
+  padding:12px;
+  background:rgba(255,255,255,.15);
+  border-radius:12px;
+  font-size:12px;
+  font-weight:500;
 }
 
 /* CARD */
@@ -125,7 +136,6 @@ body{
 .gray{background:linear-gradient(135deg,#cbd5e1,#64748b)}
 .wa{background:linear-gradient(135deg,#86efac,#22c55e)}
 
-/* NOTE */
 .note{
   margin-top:14px;
   text-align:center;
@@ -133,25 +143,27 @@ body{
   color:var(--muted);
 }
 
-/* PRINT */
 @media print{
   body{background:#fff}
-  .topbar{position:relative;box-shadow:none}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR WITH BACK -->
-<div class="topbar">
-  <a class="back-btn" href="https://rikoantah.github.io/Web-Utama-UMPAR/">← Back</a>
-  <div class="title">Menu Utama</div>
-</div>
-
 <div class="header">
   <h1>Kenaikan Pangkat</h1>
   <p>Layanan Digital Kepegawaian</p>
+</div>
+
+<!-- PENGUMUMAN PALING ATAS -->
+<div class="announcement">
+  <h2>📢 Daftar Pangkat BKD</h2>
+  <div class="period">Periode Mei 2026</div>
+  <div class="date">Buka: 10 Maret 2026<br>Tutup: 20 Maret 2026</div>
+  <div class="warning">
+    Pastikan Berkas-Berkas yang diperlukan siap sebelum pembukaan.
+  </div>
 </div>
 
 <div class="card">
