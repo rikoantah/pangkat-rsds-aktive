@@ -10,10 +10,8 @@
   --primary:#2563eb;
   --secondary:#16a34a;
   --accent:#0ea5e9;
-  --wa:#22c55e;
-  --gray:#e5e7eb;
-  --bg:#f8fafc;
-  --card:#ffffff;
+  --bg:#eef2ff;
+  --card:rgba(255,255,255,0.7);
   --text:#0f172a;
   --muted:#475569;
 }
@@ -23,21 +21,23 @@
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:var(--bg);
+  background:linear-gradient(135deg,#dbeafe,#eef2ff);
   color:var(--text);
-  min-height:100vh;
 }
 
 /* HEADER */
 .header{
-  padding:26px 18px 10px;
   text-align:center;
+  padding:30px 20px 10px;
 }
 
 .header h1{
   margin:0;
-  font-size:1.6rem;
-  font-weight:800;
+  font-size:1.8rem;
+  font-weight:900;
+  background:linear-gradient(90deg,#2563eb,#0ea5e9);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
 .header p{
@@ -46,34 +46,29 @@ body{
   color:var(--muted);
 }
 
-/* PENGUMUMAN */
+/* ANNOUNCEMENT */
 .announcement{
-  margin:18px 16px 0;
-  padding:20px;
-  border-radius:20px;
+  margin:18px;
+  padding:22px;
+  border-radius:24px;
   background:linear-gradient(135deg,#1e3a8a,#2563eb);
   color:#fff;
-  box-shadow:0 12px 30px rgba(37,99,235,.35);
-  position:relative;
-  overflow:hidden;
+  box-shadow:0 15px 40px rgba(37,99,235,.35);
 }
 
 .announcement h2{
   margin:0;
   font-size:18px;
-  font-weight:800;
 }
 
 .announcement .period{
   margin-top:8px;
-  font-size:14px;
   font-weight:600;
 }
 
 .announcement .date{
   margin-top:6px;
   font-size:13px;
-  opacity:.95;
 }
 
 .announcement .warning{
@@ -82,23 +77,22 @@ body{
   background:rgba(255,255,255,.15);
   border-radius:12px;
   font-size:12px;
-  font-weight:500;
 }
 
 /* CARD */
 .card{
-  margin:16px;
+  margin:18px;
   padding:18px;
+  border-radius:22px;
   background:var(--card);
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* BUTTON LIST */
+/* BUTTON */
 .list{
   display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
+  gap:14px;
 }
 
 .btn{
@@ -108,10 +102,15 @@ body{
   padding:16px;
   border-radius:16px;
   text-decoration:none;
-  font-size:15px;
-  font-weight:700;
   color:#fff;
-  transition:.2s ease;
+  font-weight:700;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn:hover{
+  transform:scale(1.02);
 }
 
 .btn span{
@@ -121,31 +120,33 @@ body{
 .btn small{
   display:block;
   font-size:12px;
-  font-weight:500;
   opacity:.9;
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-/* COLOR VARIANTS */
+/* COLORS */
 .blue{background:linear-gradient(135deg,#60a5fa,#2563eb)}
 .green{background:linear-gradient(135deg,#4ade80,#16a34a)}
-.sky{background:linear-gradient(135deg,#7dd3fc,#0ea5e9)}
 .gray{background:linear-gradient(135deg,#cbd5e1,#64748b)}
-.wa{background:linear-gradient(135deg,#86efac,#22c55e)}
+.sky{background:linear-gradient(135deg,#7dd3fc,#0ea5e9)}
+
+/* SPECIAL NOTICE */
+.notice{
+  margin-top:12px;
+  padding:12px;
+  background:#f1f5f9;
+  border-left:5px solid #0ea5e9;
+  border-radius:10px;
+  font-size:12px;
+  color:#334155;
+}
 
 .note{
-  margin-top:14px;
+  margin-top:16px;
   text-align:center;
   font-size:12px;
   color:var(--muted);
 }
 
-@media print{
-  body{background:#fff}
-}
 </style>
 </head>
 
@@ -156,13 +157,13 @@ body{
   <p>Layanan Digital Kepegawaian</p>
 </div>
 
-<!-- PENGUMUMAN PALING ATAS -->
+<!-- PENGUMUMAN -->
 <div class="announcement">
   <h2>📢 Daftar Pangkat BKD</h2>
   <div class="period">Periode Mei 2026</div>
-  <div class="date">Buka: 10 Maret 2026<br>Tutup: 20 Maret 2026</div>
+  <div class="date">Buka: 10 April 2026<br>Tutup: 20 April 2026</div>
   <div class="warning">
-    Pastikan Berkas-Berkas yang diperlukan siap sebelum pembukaan.
+    Pastikan seluruh berkas persyaratan telah lengkap sebelum periode dibuka.
   </div>
 </div>
 
@@ -202,23 +203,21 @@ body{
       <span>🚀</span>
       <div>
         Ajukan ke BKD
-        <small>Pantau status pengajuan</small>
+        <small>Pengajuan & monitoring status</small>
       </div>
     </a>
 
-    <a class="btn wa" target="_blank"
-       href="https://chat.whatsapp.com/GCBj3rAgQ2H1O5mdV30cXr">
-      <span>💬</span>
-      <div>
-        Grup WhatsApp
-        <small>Info & pengumuman</small>
-      </div>
-    </a>
+    <!-- NOTIS TAMBAHAN -->
+    <div class="notice">
+      ⚠️ Setelah memperoleh rekomendasi dari OPD, Anda <b>wajib mengajukan melalui menu ini</b>.  
+      <br><br>
+      Menu ini juga digunakan untuk <b>memantau status proses kenaikan pangkat di BKD</b> secara berkala.
+    </div>
 
   </div>
 
   <div class="note">
-    Pastikan seluruh persyaratan lengkap sebelum mengajukan.
+    Pastikan semua dokumen telah lengkap dan sesuai sebelum melakukan pengajuan.
   </div>
 
 </div>
