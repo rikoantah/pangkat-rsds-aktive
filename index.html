@@ -11,7 +11,7 @@
   --secondary:#16a34a;
   --accent:#0ea5e9;
   --bg:#eef2ff;
-  --card:rgba(255,255,255,0.7);
+  --card:rgba(255,255,255,0.75);
   --text:#0f172a;
   --muted:#475569;
 }
@@ -25,6 +25,12 @@ body{
   color:var(--text);
 }
 
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
 /* HEADER */
 .header{
   text-align:center;
@@ -33,7 +39,7 @@ body{
 
 .header h1{
   margin:0;
-  font-size:1.8rem;
+  font-size:clamp(1.5rem,2vw,2rem);
   font-weight:900;
   background:linear-gradient(90deg,#2563eb,#0ea5e9);
   -webkit-background-clip:text;
@@ -56,21 +62,9 @@ body{
   box-shadow:0 15px 40px rgba(37,99,235,.35);
 }
 
-.announcement h2{
-  margin:0;
-  font-size:18px;
-}
-
-.announcement .period{
-  margin-top:8px;
-  font-weight:600;
-}
-
-.announcement .date{
-  margin-top:6px;
-  font-size:13px;
-}
-
+.announcement h2{margin:0;font-size:18px}
+.announcement .period{margin-top:8px;font-weight:600}
+.announcement .date{margin-top:6px;font-size:13px}
 .announcement .warning{
   margin-top:14px;
   padding:12px;
@@ -89,28 +83,45 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* BUTTON */
+/* GRID RESPONSIVE */
 .list{
   display:grid;
-  gap:14px;
+  gap:16px;
+  grid-template-columns:1fr;
 }
 
+@media(min-width:600px){
+  .list{grid-template-columns:1fr 1fr;}
+}
+
+@media(min-width:900px){
+  .list{grid-template-columns:1fr 1fr 1fr;}
+}
+
+/* BUTTON */
 .btn{
   display:flex;
-  align-items:center;
-  gap:14px;
-  padding:16px;
-  border-radius:16px;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+  padding:18px;
+  border-radius:18px;
   text-decoration:none;
   color:#fff;
   font-weight:700;
   transition:.25s;
   position:relative;
-  overflow:hidden;
+  min-height:110px;
 }
 
 .btn:hover{
-  transform:scale(1.02);
+  transform:translateY(-4px) scale(1.02);
+}
+
+.btn .top{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .btn span{
@@ -118,7 +129,6 @@ body{
 }
 
 .btn small{
-  display:block;
   font-size:12px;
   opacity:.9;
 }
@@ -129,19 +139,19 @@ body{
 .gray{background:linear-gradient(135deg,#cbd5e1,#64748b)}
 .sky{background:linear-gradient(135deg,#7dd3fc,#0ea5e9)}
 
-/* SPECIAL NOTICE */
-.notice{
-  margin-top:12px;
-  padding:12px;
-  background:#f1f5f9;
-  border-left:5px solid #0ea5e9;
+/* NOTICE INSIDE BUTTON */
+.btn .notice{
+  margin-top:6px;
+  font-size:11px;
+  background:rgba(255,255,255,.15);
+  padding:8px;
   border-radius:10px;
-  font-size:12px;
-  color:#334155;
+  line-height:1.4;
 }
 
+/* FOOTER NOTE */
 .note{
-  margin-top:16px;
+  margin-top:18px;
   text-align:center;
   font-size:12px;
   color:var(--muted);
@@ -152,12 +162,13 @@ body{
 
 <body>
 
+<div class="container">
+
 <div class="header">
   <h1>Kenaikan Pangkat</h1>
   <p>Layanan Digital Kepegawaian</p>
 </div>
 
-<!-- PENGUMUMAN -->
 <div class="announcement">
   <h2>📢 Daftar Pangkat BKD</h2>
   <div class="period">Periode Mei 2026</div>
@@ -173,52 +184,52 @@ body{
 
     <a class="btn blue" target="_blank"
        href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
-      <span>📄</span>
-      <div>
-        Persyaratan
-        <small>Daftar berkas wajib</small>
+      <div class="top">
+        <span>📄</span>
+        <div>Persyaratan</div>
       </div>
+      <small>Daftar berkas wajib</small>
     </a>
 
     <a class="btn green" target="_blank"
        href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-      <span>✍️</span>
-      <div>
-        Surat Atasan Langsung
-        <small>Isi & cetak otomatis</small>
+      <div class="top">
+        <span>✍️</span>
+        <div>Surat Atasan Langsung</div>
       </div>
+      <small>Isi & cetak otomatis</small>
     </a>
 
     <a class="btn gray" target="_blank"
        href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-      <span>⏳</span>
-      <div>
-        Daftar Pangkat Link Umpar
-        <small>Proses internal</small>
+      <div class="top">
+        <span>⏳</span>
+        <div>Daftar Pangkat</div>
       </div>
+      <small>Proses internal</small>
     </a>
 
     <a class="btn sky" target="_blank"
        href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-      <span>🚀</span>
-      <div>
-        Ajukan ke BKD
-        <small>Pengajuan & monitoring status</small>
+      <div class="top">
+        <span>🚀</span>
+        <div>Ajukan ke BKD</div>
+      </div>
+      <small>Pengajuan & monitoring status</small>
+
+      <div class="notice">
+        Setelah mendapatkan rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.  
+        Gunakan menu ini juga untuk memantau status kenaikan pangkat Anda di BKD.
       </div>
     </a>
-
-    <!-- NOTIS TAMBAHAN -->
-    <div class="notice">
-      ⚠️ Setelah memperoleh rekomendasi dari OPD, Anda <b>wajib mengajukan melalui menu ini</b>.  
-      <br><br>
-      Menu ini juga digunakan untuk <b>memantau status proses kenaikan pangkat di BKD</b> secara berkala.
-    </div>
 
   </div>
 
   <div class="note">
     Pastikan semua dokumen telah lengkap dan sesuai sebelum melakukan pengajuan.
   </div>
+
+</div>
 
 </div>
 
