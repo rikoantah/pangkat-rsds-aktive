@@ -11,9 +11,9 @@
   --secondary:#16a34a;
   --accent:#0ea5e9;
   --bg:#eef2ff;
-  --card:rgba(255,255,255,0.75);
+  --card:rgba(255,255,255,0.8);
   --text:#0f172a;
-  --muted:#475569;
+  --muted:#64748b;
 }
 
 *{box-sizing:border-box}
@@ -25,7 +25,6 @@ body{
   color:var(--text);
 }
 
-/* CONTAINER */
 .container{
   max-width:1100px;
   margin:auto;
@@ -62,96 +61,101 @@ body{
   box-shadow:0 15px 40px rgba(37,99,235,.35);
 }
 
-.announcement h2{margin:0;font-size:18px}
-.announcement .period{margin-top:8px;font-weight:600}
-.announcement .date{margin-top:6px;font-size:13px}
-.announcement .warning{
-  margin-top:14px;
-  padding:12px;
-  background:rgba(255,255,255,.15);
-  border-radius:12px;
-  font-size:12px;
-}
-
 /* CARD */
 .card{
   margin:18px;
-  padding:18px;
+  padding:20px;
   border-radius:22px;
   background:var(--card);
   backdrop-filter:blur(12px);
   box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* GRID RESPONSIVE */
-.list{
+/* PRIMARY BUTTON (utama) */
+.primary-grid{
   display:grid;
   gap:16px;
-  grid-template-columns:1fr;
 }
 
-@media(min-width:600px){
-  .list{grid-template-columns:1fr 1fr;}
+@media(min-width:700px){
+  .primary-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-@media(min-width:900px){
-  .list{grid-template-columns:1fr 1fr 1fr;}
-}
-
-/* BUTTON */
-.btn{
+.primary-btn{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  gap:6px;
-  padding:18px;
-  border-radius:18px;
+  padding:22px;
+  border-radius:20px;
   text-decoration:none;
   color:#fff;
-  font-weight:700;
-  transition:.25s;
-  position:relative;
-  min-height:110px;
+  font-weight:800;
+  min-height:140px;
+  transition:.3s;
 }
 
-.btn:hover{
-  transform:translateY(-4px) scale(1.02);
+.primary-btn:hover{
+  transform:scale(1.03);
 }
 
-.btn .top{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.primary-btn span{
+  font-size:26px;
+  margin-bottom:8px;
 }
 
-.btn span{
-  font-size:22px;
-}
+/* WARNA */
+.rekom{background:linear-gradient(135deg,#64748b,#334155)}
+.bkd{background:linear-gradient(135deg,#0ea5e9,#2563eb)}
 
-.btn small{
+/* NOTICE */
+.notice{
+  margin-top:10px;
   font-size:12px;
-  opacity:.9;
-}
-
-/* COLORS */
-.blue{background:linear-gradient(135deg,#60a5fa,#2563eb)}
-.green{background:linear-gradient(135deg,#4ade80,#16a34a)}
-.gray{background:linear-gradient(135deg,#cbd5e1,#64748b)}
-.sky{background:linear-gradient(135deg,#7dd3fc,#0ea5e9)}
-
-/* NOTICE INSIDE BUTTON */
-.btn .notice{
-  margin-top:6px;
-  font-size:11px;
   background:rgba(255,255,255,.15);
-  padding:8px;
+  padding:10px;
   border-radius:10px;
-  line-height:1.4;
 }
 
-/* FOOTER NOTE */
+/* SECONDARY SECTION */
+.secondary{
+  margin-top:25px;
+}
+
+.secondary-title{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:10px;
+  text-align:center;
+}
+
+/* SECONDARY BUTTON */
+.secondary-grid{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.secondary-btn{
+  padding:10px 14px;
+  border-radius:12px;
+  background:#e2e8f0;
+  color:#0f172a;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.secondary-btn:hover{
+  background:#cbd5e1;
+}
+
+/* FOOTER */
 .note{
-  margin-top:18px;
+  margin-top:20px;
   text-align:center;
   font-size:12px;
   color:var(--muted);
@@ -171,62 +175,57 @@ body{
 
 <div class="announcement">
   <h2>📢 Daftar Pangkat BKD</h2>
-  <div class="period">Periode Juni 2026</div>
-  <div class="date">Buka: 10 April 2026<br>Tutup: 20 April 2026</div>
-  <div class="warning">
-    Pastikan seluruh berkas persyaratan telah lengkap sebelum periode dibuka.
-  </div>
+  <div>Periode Mei 2026</div>
+  <div>Buka: 10 April 2026 | Tutup: 20 April 2026</div>
 </div>
 
 <div class="card">
 
-  <div class="list">
+  <!-- PRIMARY (UTAMA) -->
+  <div class="primary-grid">
 
-    <a class="btn blue" target="_blank"
-       href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
-      <div class="top">
-        <span>📄</span>
-        <div>Persyaratan</div>
-      </div>
-      <small>Daftar berkas wajib</small>
-    </a>
-
-    <a class="btn green" target="_blank"
-       href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-      <div class="top">
-        <span>✍️</span>
-        <div>Surat Atasan Langsung</div>
-      </div>
-      <small>Isi & cetak otomatis</small>
-    </a>
-
-    <a class="btn gray" target="_blank"
+    <a class="primary-btn rekom" target="_blank"
        href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-      <div class="top">
-        <span>⏳</span>
-        <div>Daftar Pangkat</div>
-      </div>
-      <small>Proses internal</small>
+      <span>📝</span>
+      Ajukan Rekom Pangkat
+      <small>Proses pengajuan awal ke OPD</small>
     </a>
 
-    <a class="btn sky" target="_blank"
+    <a class="primary-btn bkd" target="_blank"
        href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-      <div class="top">
-        <span>🚀</span>
-        <div>Ajukan ke BKD</div>
-      </div>
+      <span>🚀</span>
+      Ajukan ke BKD
       <small>Pengajuan & monitoring status</small>
 
       <div class="notice">
-        Setelah mendapatkan rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.  
-        Gunakan menu ini juga untuk memantau status kenaikan pangkat Anda di BKD.
+        Setelah memperoleh rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.
+        Gunakan juga untuk memantau status kenaikan pangkat di BKD.
       </div>
     </a>
 
   </div>
 
+  <!-- SECONDARY -->
+  <div class="secondary">
+    <div class="secondary-title">Menu Tambahan (Opsional)</div>
+
+    <div class="secondary-grid">
+
+      <a class="secondary-btn" target="_blank"
+         href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
+        📄 Persyaratan
+      </a>
+
+      <a class="secondary-btn" target="_blank"
+         href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
+        ✍️ Surat Atasan
+      </a>
+
+    </div>
+  </div>
+
   <div class="note">
-    Pastikan semua dokumen telah lengkap dan sesuai sebelum melakukan pengajuan.
+    Fokus pada dua langkah utama: Rekomendasi OPD → Pengajuan ke BKD
   </div>
 
 </div>
