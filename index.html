@@ -160,7 +160,6 @@ body{
   font-size:12px;
   color:var(--muted);
 }
-
 </style>
 </head>
 
@@ -168,69 +167,149 @@ body{
 
 <div class="container">
 
-<div class="header">
-  <h1>Kenaikan Pangkat</h1>
-  <p>Layanan Digital Kepegawaian</p>
-</div>
-
-<div class="announcement">
-  <h2>📢 Daftar Pangkat BKD</h2>
-  <div>Periode November 2026</div>
-  <div>Buka: 10 September 2026 | Tutup: 20 September 2026</div>
-</div>
-
-<div class="card">
-
-  <!-- PRIMARY (UTAMA) -->
-  <div class="primary-grid">
-
-    <a class="primary-btn rekom" target="_blank"
-       href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-      <span>📝</span>
-      Ajukan Rekom Pangkat
-      <small>Proses pengajuan awal ke OPD</small>
-    </a>
-
-    <a class="primary-btn bkd" target="_blank"
-       href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-      <span>🚀</span>
-      Ajukan ke BKD
-      <small>Pengajuan & monitoring status</small>
-
-      <div class="notice">
-        Setelah memperoleh rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.
-        Gunakan juga untuk memantau status kenaikan pangkat di BKD.
-      </div>
-    </a>
-
+  <div class="header">
+    <h1>Kenaikan Pangkat</h1>
+    <p>Layanan Digital Kepegawaian</p>
   </div>
 
-  <!-- SECONDARY -->
-  <div class="secondary">
-    <div class="secondary-title">Menu Tambahan (Opsional)</div>
+  <div class="announcement">
+    <h2>📢 Daftar Pangkat BKD</h2>
+    <div id="periode-pangkat"></div>
+    <div id="jadwal-pangkat"></div>
+  </div>
 
-    <div class="secondary-grid">
+  <div class="card">
 
-      <a class="secondary-btn" target="_blank"
-         href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
-        📄 Persyaratan
+    <!-- PRIMARY (UTAMA) -->
+    <div class="primary-grid">
+
+      <a class="primary-btn rekom"
+         target="_blank"
+         rel="noopener noreferrer"
+         href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
+        <span>📝</span>
+        Ajukan Rekom Pangkat
+        <small>Proses pengajuan awal ke OPD</small>
       </a>
 
-      <a class="secondary-btn" target="_blank"
-         href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-        ✍️ Surat Atasan
+      <a class="primary-btn bkd"
+         target="_blank"
+         rel="noopener noreferrer"
+         href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
+        <span>🚀</span>
+        Ajukan ke BKD
+        <small>Pengajuan &amp; monitoring status</small>
+
+        <div class="notice">
+          Setelah memperoleh rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.
+          Gunakan juga untuk memantau status kenaikan pangkat di BKD.
+        </div>
       </a>
 
     </div>
-  </div>
 
-  <div class="note">
-    Fokus pada dua langkah utama: Rekomendasi OPD → Pengajuan ke BKD
+    <!-- SECONDARY -->
+    <div class="secondary">
+      <div class="secondary-title">Menu Tambahan (Opsional)</div>
+
+      <div class="secondary-grid">
+
+        <a class="secondary-btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
+          📄 Persyaratan
+        </a>
+
+        <a class="secondary-btn"
+           target="_blank"
+           rel="noopener noreferrer"
+           href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
+          ✍️ Surat Atasan
+        </a>
+
+      </div>
+    </div>
+
+    <div class="note">
+      Fokus pada dua langkah utama: Rekomendasi OPD → Pengajuan ke BKD
+    </div>
+
   </div>
 
 </div>
 
-</div>
+<script>
+(function () {
+  "use strict";
+
+  const namaBulan = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember"
+  ];
+
+  const formatTanggalWIB = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Jakarta",
+    year: "numeric",
+    month: "numeric"
+  });
+
+  function perbaruiPeriodePangkat() {
+    // Ambil bulan dan tahun berjalan berdasarkan WIB.
+    const bagianTanggal = formatTanggalWIB.formatToParts(new Date());
+
+    const tahun = Number(
+      bagianTanggal.find(function (bagian) {
+        return bagian.type === "year";
+      }).value
+    );
+
+    // Indeks bulan: Januari = 0, Desember = 11.
+    const bulan = Number(
+      bagianTanggal.find(function (bagian) {
+        return bagian.type === "month";
+      }).value
+    ) - 1;
+
+    // Periode pangkat selalu 2 bulan setelah bulan berjalan.
+    // Pergantian tahun dihitung otomatis.
+    const bulanPeriode = (bulan + 2) % 12;
+    const tahunPeriode = tahun + Math.floor((bulan + 2) / 12);
+
+    document.getElementById("periode-pangkat").textContent =
+      "Periode " + namaBulan[bulanPeriode] + " " + tahunPeriode;
+
+    // Jadwal pengajuan tanggal 10–20 pada bulan berjalan.
+    document.getElementById("jadwal-pangkat").textContent =
+      "Buka: 10 " + namaBulan[bulan] + " " + tahun +
+      " | Tutup: 20 " + namaBulan[bulan] + " " + tahun;
+  }
+
+  // Perbarui langsung saat halaman dibuka.
+  perbaruiPeriodePangkat();
+
+  // Periksa setiap menit jika halaman tetap terbuka
+  // ketika terjadi pergantian bulan.
+  setInterval(perbaruiPeriodePangkat, 60000);
+
+  // Perbarui ketika pengguna kembali ke tab.
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      perbaruiPeriodePangkat();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
