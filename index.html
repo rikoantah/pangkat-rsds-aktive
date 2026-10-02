@@ -24,11 +24,36 @@ h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-
 .primary{width:100%;border:0;border-radius:12px;padding:16px;color:#fff;background:var(--green);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px}.primary:hover:not(:disabled){background:#115747}.fine{font-size:11px;line-height:1.7;color:var(--muted);text-align:center;margin-top:12px}.status{font-size:12px;line-height:1.7;color:var(--muted);min-height:20px;margin:12px 0}.status.error{color:#a33131;background:#fff4f1;border-radius:8px;padding:10px}.retry{border:0;background:none;color:var(--green);text-decoration:underline;font-size:12px;padding:8px 0}
 .success{text-align:center;padding:26px 0}.check{width:64px;height:64px;margin:0 auto 24px;display:grid;place-items:center;background:#e7f3e9;color:var(--green);font-size:30px;border-radius:50%}.success p{color:var(--muted);font-size:13px;line-height:1.8}.receipt{text-align:left;background:#f5f8f3;border-radius:12px;padding:18px;line-height:1.9;font-size:13px;margin:24px 0;overflow-wrap:anywhere}.receipt small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}.receipt strong{display:block;margin-bottom:10px}footer{text-align:center;padding:0 20px 28px;color:var(--muted);font-size:11px}[hidden]{display:none!important}.bridge{display:none}
 @media(max-width:720px){header{padding:20px}.tag{display:none}main{margin:0 14px 24px;grid-template-columns:1fr;border-radius:22px}.intro{padding:28px}.intro h1{font-size:33px;margin:14px 0}.intro p{max-width:none;margin:0;font-size:13px}.steps,.note{display:none}.form-side{padding:26px 24px}.period{margin-bottom:24px}}
+
+.home{display:block;min-height:0;padding:40px;max-width:900px}
+.home h1{font-size:34px;letter-spacing:-1px;margin:10px 0 12px}
+.home .eyebrow{color:var(--green)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.menu-card{text-align:left;padding:24px;border:1px solid var(--line);background:#f8faf7;color:var(--ink);border-radius:16px;min-height:105px;font-size:16px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.menu-card:hover{background:#edf5ef;border-color:var(--green)}
+.menu-card.featured{background:var(--green);color:white}
+.menu-card span{font-size:22px;font-weight:400}
+.back-row{max-width:1056px;margin:12px auto 0;padding:0 4px}
+.back{border:1px solid var(--line);background:white;color:var(--green);padding:11px 16px;border-radius:10px;font-size:13px}
+@media(max-width:720px){.home{padding:28px 24px}.home h1{font-size:28px}.menu-grid{grid-template-columns:1fr}.menu-card{padding:20px;min-height:78px}.back-row{margin:8px 14px 14px;padding:0}}
 </style>
 </head>
 <body>
 <header><div class="mark" aria-hidden="true">+</div><div class="brand"><strong>RSUD dr. Soedarso</strong><span>LAYANAN KEPEGAWAIAN</span></div><span class="tag">Pengajuan rekomendasi pangkat</span></header>
-<main>
+<main id="home" class="home">
+<div class="eyebrow">Layanan kepegawaian</div>
+<h1>Layanan Kenaikan Pangkat</h1>
+<p class="hint">Pilih layanan yang ingin Anda akses.</p>
+<nav class="menu-grid" aria-label="Layanan kenaikan pangkat">
+<button class="menu-card featured" id="open-rekom" type="button" aria-controls="rekom" aria-expanded="false">Ajukan Rekom Pangkat <span aria-hidden="true">→</span></button>
+<button class="menu-card" id="open-bkd" type="button">Ajukan ke BKD <span aria-hidden="true">↗</span></button>
+<button class="menu-card" id="open-persyaratan" type="button">Persyaratan <span aria-hidden="true">↗</span></button>
+<button class="menu-card" id="open-atasan" type="button">Surat Atasan <span aria-hidden="true">↗</span></button>
+</nav>
+<p id="menu-status" class="status" role="status" aria-live="polite"></p>
+</main>
+<div id="back-row" class="back-row" hidden><button type="button" class="back" id="back-menu">← Kembali ke menu utama</button></div>
+<main id="rekom" hidden>
 <section class="intro"><div class="eyebrow">Administrasi kepegawaian</div><h1>Langkah baru<br>untuk <span>karier Anda.</span></h1><p>Ajukan rekomendasi kenaikan pangkat dengan mudah. Cukup pilih nama dan periksa identitas Anda.</p><ol class="steps"><li><b>01</b>Cari dan pilih nama Anda</li><li><b>02</b>Periksa data serta periode</li><li><b>03</b>Kirim pengajuan rekomendasi</li></ol><div class="note">Periode mengikuti jadwal yang ditetapkan admin.<br>Pengajuan ini tidak memerlukan upload dokumen.</div></section>
 <section class="form-side">
 <div class="period"><span class="dot"></span><div><small>Periode pengajuan</small><strong id="periode">Menghubungkan…</strong></div></div>
@@ -47,10 +72,18 @@ h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-
 <script>
 // GANTI DENGAN URL WEB APP GAS HASIL DEPLOY, BERAKHIR /exec.
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDrrkzhimLqL-th7YTEg2A-MkY9yaIKu8nL0T6xHt4P0xPaGh6jEhxbpK3HXXQ6SwL/exec';
+// Isi dengan URL asli ketiga layanan dari halaman lama.
+// URL tidak tersedia dalam lampiran, sehingga sengaja tidak ditebak.
+const MENU_LINKS = {
+  bkd: '',          // URL Ajukan ke BKD
+  persyaratan: '',  // URL Persyaratan
+  atasan: ''        // URL Surat Atasan
+};
 const $ = id => document.getElementById(id);
 const channel = crypto.randomUUID();
 const pending = new Map();
 let peer=null, peerOrigin='', period='', selected=null, timer, sequence=0, busy=false;
+let started=false, connectTimeout;
 function status(text,error=false){$('status').textContent=text;$('status').className='status'+(error?' error':'');}
 function closeResults(){ $('results').hidden=true; $('nama').setAttribute('aria-expanded','false'); }
 function readyButton(){ $('submit').disabled=busy || !selected || !period || !peer; }
@@ -101,7 +134,7 @@ $('results').addEventListener('keydown',e=>{const buttons=[...$('results').query
 document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))closeResults();});
 $('form').addEventListener('submit',async e=>{
   e.preventDefault();if(busy||!selected||!period)return;
-  busy=true;++sequence;clearTimeout(timer);closeResults();readyButton();$('nama').disabled=true;$('submit').textContent='Menyimpan pengajuan…';status('Mohon tunggu konfirmasi penyimpanan.');
+  busy=true;$('back-menu').disabled=true;++sequence;clearTimeout(timer);closeResults();readyButton();$('nama').disabled=true;$('submit').textContent='Menyimpan pengajuan…';status('Mohon tunggu konfirmasi penyimpanan.');
   try{
     const r=await rpc({action:'submit',nip:selected.nip,periode:period});
     $('saved-name').textContent=r.nama;$('saved-period').textContent=r.periode;$('saved-time').textContent=r.waktu;
@@ -109,12 +142,40 @@ $('form').addEventListener('submit',async e=>{
     $('success-note').textContent=r.existing?'Pengajuan Anda pada periode ini sudah tersimpan. Tidak ada data ganda yang ditambahkan.':'Pengajuan rekomendasi Anda telah tercatat untuk ditindaklanjuti oleh pengelola kepegawaian.';
     $('form').hidden=true;$('success').hidden=false;status('');$('again').focus();
   }catch(e){status(e.message,true);$('retry').hidden=false;}
-  finally{busy=false;$('nama').disabled=false;$('submit').textContent='Ajukan Rekomendasi Pangkat →';readyButton();}
+  finally{busy=false;$('back-menu').disabled=false;$('nama').disabled=false;$('submit').textContent='Ajukan Rekomendasi Pangkat →';readyButton();}
 });
-$('again').onclick=()=>location.reload();$('retry').onclick=()=>location.reload();
-const connectTimeout=setTimeout(()=>{if(!peer){$('periode').textContent='Belum terhubung';status('Belum terhubung ke GAS. Periksa URL /exec dan akses deployment Anyone, lalu muat ulang.',true);$('retry').hidden=false;}},30000);
+function showMenu(){
+  if(busy)return;
+  ++sequence;clearTimeout(timer);closeResults();
+  $('home').hidden=false;$('rekom').hidden=true;$('back-row').hidden=true;
+  $('open-rekom').setAttribute('aria-expanded','false');$('open-rekom').focus();
+}
+$('back-menu').onclick=showMenu;
+$('again').textContent='Kembali ke menu utama';
+$('again').onclick=()=>{ $('form').hidden=false;$('success').hidden=true;$('nama').value='';clearIdentity();status('Silakan cari nama Anda.');showMenu(); };
+$('retry').onclick=()=>location.reload();
+$('open-rekom').onclick=()=>{
+  $('home').hidden=true;$('rekom').hidden=false;$('back-row').hidden=false;
+  $('open-rekom').setAttribute('aria-expanded','true');
+  startConnection();$('back-menu').focus();window.scrollTo({top:0,behavior:'smooth'});
+};
+for(const key of ['bkd','persyaratan','atasan']){
+  $('open-'+key).onclick=()=>{
+    const url=MENU_LINKS[key].trim();
+    if(!/^https:\/\//i.test(url)){
+      $('menu-status').textContent='Tautan layanan ini belum diatur. Silakan hubungi pengelola kepegawaian.';
+      $('menu-status').className='status error';return;
+    }
+    $('menu-status').textContent='';window.open(url,'_blank','noopener,noreferrer');
+  };
+}
+function startConnection(){
+if(started)return;
+started=true;
+connectTimeout=setTimeout(()=>{if(!peer){$('periode').textContent='Belum terhubung';status('Belum terhubung ke GAS. Periksa URL /exec dan akses deployment Anyone, lalu muat ulang.',true);$('retry').hidden=false;}},30000);
 if(/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(GAS_URL)){
   $('bridge').src=GAS_URL+'?channel='+encodeURIComponent(channel);
 }else{clearTimeout(connectTimeout);$('periode').textContent='Perlu konfigurasi';status('Isi GAS_URL di index.html dengan URL Web App hasil deploy.',true);}
+}
 </script>
 </body></html>
