@@ -2,314 +2,119 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Layanan Kenaikan Pangkat</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#103d39">
+<title>Ajukan Rekomendasi Pangkat · RSUD dr. Soedarso</title>
 <style>
-:root{
-  --primary:#2563eb;
-  --secondary:#16a34a;
-  --accent:#0ea5e9;
-  --bg:#eef2ff;
-  --card:rgba(255,255,255,0.8);
-  --text:#0f172a;
-  --muted:#64748b;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:linear-gradient(135deg,#dbeafe,#eef2ff);
-  color:var(--text);
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-}
-
-/* HEADER */
-.header{
-  text-align:center;
-  padding:30px 20px 10px;
-}
-
-.header h1{
-  margin:0;
-  font-size:clamp(1.5rem,2vw,2rem);
-  font-weight:900;
-  background:linear-gradient(90deg,#2563eb,#0ea5e9);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.header p{
-  margin-top:6px;
-  font-size:13px;
-  color:var(--muted);
-}
-
-/* ANNOUNCEMENT */
-.announcement{
-  margin:18px;
-  padding:22px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#1e3a8a,#2563eb);
-  color:#fff;
-  box-shadow:0 15px 40px rgba(37,99,235,.35);
-}
-
-/* CARD */
-.card{
-  margin:18px;
-  padding:20px;
-  border-radius:22px;
-  background:var(--card);
-  backdrop-filter:blur(12px);
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-/* PRIMARY BUTTON (utama) */
-.primary-grid{
-  display:grid;
-  gap:16px;
-}
-
-@media(min-width:700px){
-  .primary-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-.primary-btn{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:22px;
-  border-radius:20px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:800;
-  min-height:140px;
-  transition:.3s;
-}
-
-.primary-btn:hover{
-  transform:scale(1.03);
-}
-
-.primary-btn span{
-  font-size:26px;
-  margin-bottom:8px;
-}
-
-/* WARNA */
-.rekom{background:linear-gradient(135deg,#64748b,#334155)}
-.bkd{background:linear-gradient(135deg,#0ea5e9,#2563eb)}
-
-/* NOTICE */
-.notice{
-  margin-top:10px;
-  font-size:12px;
-  background:rgba(255,255,255,.15);
-  padding:10px;
-  border-radius:10px;
-}
-
-/* SECONDARY SECTION */
-.secondary{
-  margin-top:25px;
-}
-
-.secondary-title{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:10px;
-  text-align:center;
-}
-
-/* SECONDARY BUTTON */
-.secondary-grid{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.secondary-btn{
-  padding:10px 14px;
-  border-radius:12px;
-  background:#e2e8f0;
-  color:#0f172a;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:600;
-  transition:.2s;
-}
-
-.secondary-btn:hover{
-  background:#cbd5e1;
-}
-
-/* FOOTER */
-.note{
-  margin-top:20px;
-  text-align:center;
-  font-size:12px;
-  color:var(--muted);
-}
+:root{--ink:#173e3a;--muted:#687d79;--green:#176b59;--line:#dce6e1;--paper:#fff;--gold:#e7c58d}
+*{box-sizing:border-box}body{margin:0;background:#f2f5f0;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}
+header{max-width:1120px;margin:auto;padding:28px 32px;display:flex;align-items:center;gap:13px}.mark{background:var(--ink);color:white;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:26px;font-weight:400}
+.brand strong{display:block;font-size:14px}.brand span{font-size:11px;color:var(--muted);letter-spacing:1px}.tag{margin-left:auto;font-size:12px;color:var(--muted)}
+main{max-width:1056px;margin:22px auto 40px;display:grid;grid-template-columns:.9fr 1.1fr;min-height:590px;background:white;border-radius:28px;box-shadow:0 24px 80px #244d3910;border:1px solid var(--line);overflow:hidden}
+.intro{position:relative;padding:48px 38px;color:#fff;background:radial-gradient(ellipse at 0 100%,#287666 0,transparent 65%),#103d39;display:flex;flex-direction:column;overflow:hidden}
+.intro:after{content:'';position:absolute;width:290px;height:290px;border:1px solid #ffffff15;border-radius:50%;right:-170px;top:70px;box-shadow:0 0 0 50px #ffffff04,0 0 0 100px #ffffff03;pointer-events:none}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase}.intro h1{font-size:42px;letter-spacing:-1.8px;line-height:1.13;margin:24px 0 20px;font-weight:600}.intro h1 span{color:var(--gold)}.intro p{font-size:14px;line-height:1.9;color:#c3d8d1;max-width:290px}
+.steps{margin:30px 0 40px;padding:0;list-style:none;display:grid;gap:18px}.steps li{font-size:13px;display:flex;align-items:center;gap:12px}.steps b{width:26px;height:26px;border-radius:50%;border:1px solid #ffffff35;display:grid;place-items:center;font-size:11px;color:var(--gold)}
+.note{margin-top:auto;border-top:1px solid #ffffff20;padding-top:20px;font-size:12px;color:#b9d2c9;line-height:1.7}
+.form-side{padding:38px 40px}.period{display:flex;align-items:center;gap:10px;background:#eff6f0;border:1px solid #deeadf;border-radius:12px;padding:13px 15px;margin-bottom:30px}.dot{width:8px;height:8px;border-radius:50%;background:#398462;flex-shrink:0}.period small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:3px}.period strong{font-size:14px}
+h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 25px}label{display:block;font-size:12px;font-weight:650;margin-bottom:8px}.search-wrap{position:relative}input{width:100%;padding:15px 16px;border:1px solid #bfcfc6;border-radius:12px;background:#fff;color:var(--ink);outline:none;font-size:14px}input:focus{border-color:var(--green);box-shadow:0 0 0 4px #176b5910}
+.results{position:absolute;top:calc(100% + 5px);left:0;right:0;max-height:245px;overflow:auto;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 24px #173e3a18;background:white;z-index:5}.results button{display:block;text-align:left;width:100%;padding:12px 14px;border:0;border-bottom:1px solid #eef2ef;background:white;color:var(--ink)}.results button:hover,.results button:focus{background:#edf5ef;outline:none}.results strong{display:block;font-size:13px}.results small{display:block;font-size:11px;color:var(--muted);line-height:1.6;margin-top:4px}.empty{padding:16px;font-size:12px;color:var(--muted)}
+.identity{margin:22px 0;background:#f8faf7;border:1px solid var(--line);border-radius:14px;padding:4px 17px}.identity div{padding:13px 0;border-bottom:1px solid var(--line)}.identity div:last-child{border-bottom:0}.identity dt{font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:5px}.identity dd{margin:0;font-size:13px;line-height:1.6;overflow-wrap:anywhere}.identity dd#nip{font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.primary{width:100%;border:0;border-radius:12px;padding:16px;color:#fff;background:var(--green);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px}.primary:hover:not(:disabled){background:#115747}.fine{font-size:11px;line-height:1.7;color:var(--muted);text-align:center;margin-top:12px}.status{font-size:12px;line-height:1.7;color:var(--muted);min-height:20px;margin:12px 0}.status.error{color:#a33131;background:#fff4f1;border-radius:8px;padding:10px}.retry{border:0;background:none;color:var(--green);text-decoration:underline;font-size:12px;padding:8px 0}
+.success{text-align:center;padding:26px 0}.check{width:64px;height:64px;margin:0 auto 24px;display:grid;place-items:center;background:#e7f3e9;color:var(--green);font-size:30px;border-radius:50%}.success p{color:var(--muted);font-size:13px;line-height:1.8}.receipt{text-align:left;background:#f5f8f3;border-radius:12px;padding:18px;line-height:1.9;font-size:13px;margin:24px 0;overflow-wrap:anywhere}.receipt small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}.receipt strong{display:block;margin-bottom:10px}footer{text-align:center;padding:0 20px 28px;color:var(--muted);font-size:11px}[hidden]{display:none!important}.bridge{display:none}
+@media(max-width:720px){header{padding:20px}.tag{display:none}main{margin:0 14px 24px;grid-template-columns:1fr;border-radius:22px}.intro{padding:28px}.intro h1{font-size:33px;margin:14px 0}.intro p{max-width:none;margin:0;font-size:13px}.steps,.note{display:none}.form-side{padding:26px 24px}.period{margin-bottom:24px}}
 </style>
 </head>
-
 <body>
-
-<div class="container">
-
-  <div class="header">
-    <h1>Kenaikan Pangkat</h1>
-    <p>Layanan Digital Kepegawaian</p>
-  </div>
-
-  <div class="announcement">
-    <h2>📢 Daftar Pangkat BKD</h2>
-    <div id="periode-pangkat"></div>
-    <div id="jadwal-pangkat"></div>
-  </div>
-
-  <div class="card">
-
-    <!-- PRIMARY (UTAMA) -->
-    <div class="primary-grid">
-
-      <a class="primary-btn rekom"
-         target="_blank"
-         rel="noopener noreferrer"
-         href="https://script.google.com/macros/s/AKfycbwZmZBNbej2Dqhk-6c_85AvKs_3UO4Eu7NMsbKIoM_YoJ95lv6AILZ-XMGgkSAMq2ys/exec">
-        <span>📝</span>
-        Ajukan Rekom Pangkat
-        <small>Proses pengajuan awal ke OPD</small>
-      </a>
-
-      <a class="primary-btn bkd"
-         target="_blank"
-         rel="noopener noreferrer"
-         href="https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec">
-        <span>🚀</span>
-        Ajukan ke BKD
-        <small>Pengajuan &amp; monitoring status</small>
-
-        <div class="notice">
-          Setelah memperoleh rekomendasi dari OPD, pengajuan wajib dilakukan melalui menu ini.
-          Gunakan juga untuk memantau status kenaikan pangkat di BKD.
-        </div>
-      </a>
-
-    </div>
-
-    <!-- SECONDARY -->
-    <div class="secondary">
-      <div class="secondary-title">Menu Tambahan (Opsional)</div>
-
-      <div class="secondary-grid">
-
-        <a class="secondary-btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           href="https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf">
-          📄 Persyaratan
-        </a>
-
-        <a class="secondary-btn"
-           target="_blank"
-           rel="noopener noreferrer"
-           href="https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec">
-          ✍️ Surat Atasan
-        </a>
-
-      </div>
-    </div>
-
-    <div class="note">
-      Fokus pada dua langkah utama: Rekomendasi OPD → Pengajuan ke BKD
-    </div>
-
-  </div>
-
-</div>
-
+<header><div class="mark" aria-hidden="true">+</div><div class="brand"><strong>RSUD dr. Soedarso</strong><span>LAYANAN KEPEGAWAIAN</span></div><span class="tag">Pengajuan rekomendasi pangkat</span></header>
+<main>
+<section class="intro"><div class="eyebrow">Administrasi kepegawaian</div><h1>Langkah baru<br>untuk <span>karier Anda.</span></h1><p>Ajukan rekomendasi kenaikan pangkat dengan mudah. Cukup pilih nama dan periksa identitas Anda.</p><ol class="steps"><li><b>01</b>Cari dan pilih nama Anda</li><li><b>02</b>Periksa data serta periode</li><li><b>03</b>Kirim pengajuan rekomendasi</li></ol><div class="note">Periode mengikuti jadwal yang ditetapkan admin.<br>Pengajuan ini tidak memerlukan upload dokumen.</div></section>
+<section class="form-side">
+<div class="period"><span class="dot"></span><div><small>Periode pengajuan</small><strong id="periode">Menghubungkan…</strong></div></div>
+<form id="form">
+<h2>Ajukan rekomendasi</h2><p class="hint">Pastikan identitas yang dipilih adalah milik Anda.</p>
+<label for="nama">Nama pegawai</label><div class="search-wrap"><input id="nama" type="search" placeholder="Ketik minimal 2 huruf nama…" autocomplete="off" maxlength="100" disabled aria-describedby="search-help" aria-controls="results" aria-expanded="false"><div id="results" class="results" hidden></div></div>
+<p class="fine" id="search-help" style="text-align:left">Pilih nama dari hasil pencarian untuk mengisi identitas.</p>
+<dl class="identity"><div><dt>NIP</dt><dd id="nip">—</dd></div><div><dt>Golongan</dt><dd id="gol">—</dd></div><div><dt>Jabatan</dt><dd id="jab">—</dd></div></dl>
+<button class="primary" id="submit" disabled type="submit">Ajukan Rekomendasi Pangkat <span aria-hidden="true">→</span></button>
+<p class="fine">Satu pengajuan untuk setiap pegawai pada periode yang sama.</p>
+</form>
+<div id="success" class="success" hidden><div class="check">✓</div><h2 id="success-title">Pengajuan tersimpan</h2><p id="success-note"></p><div class="receipt"><small>Nama pegawai</small><strong id="saved-name"></strong><small>Periode</small><strong id="saved-period"></strong><small>Waktu pencatatan · WIB</small><span id="saved-time"></span></div><button class="primary" id="again" type="button">Kembali ke formulir</button></div>
+<p id="status" class="status" role="status" aria-live="polite">Menyiapkan layanan…</p><button id="retry" class="retry" type="button" hidden>Muat ulang halaman</button>
+</section></main><footer>RSUD dr. Soedarso · Pengajuan Rekomendasi Kenaikan Pangkat</footer>
+<iframe id="bridge" class="bridge" title="Penghubung layanan" aria-hidden="true"></iframe>
 <script>
-(function () {
-  "use strict";
-
-  const namaBulan = [
-    "Januari",
-    "Februari",
-    "Maret",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Agustus",
-    "September",
-    "Oktober",
-    "November",
-    "Desember"
-  ];
-
-  const formatTanggalWIB = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Jakarta",
-    year: "numeric",
-    month: "numeric"
+// GANTI DENGAN URL WEB APP GAS HASIL DEPLOY, BERAKHIR /exec.
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDrrkzhimLqL-th7YTEg2A-MkY9yaIKu8nL0T6xHt4P0xPaGh6jEhxbpK3HXXQ6SwL/exec';
+const $ = id => document.getElementById(id);
+const channel = crypto.randomUUID();
+const pending = new Map();
+let peer=null, peerOrigin='', period='', selected=null, timer, sequence=0, busy=false;
+function status(text,error=false){$('status').textContent=text;$('status').className='status'+(error?' error':'');}
+function closeResults(){ $('results').hidden=true; $('nama').setAttribute('aria-expanded','false'); }
+function readyButton(){ $('submit').disabled=busy || !selected || !period || !peer; }
+function clearIdentity(){selected=null;['nip','gol','jab'].forEach(k=>$(k).textContent='—');readyButton();}
+function rpc(payload){
+  return new Promise((resolve,reject)=>{
+    if(!peer)return reject(new Error('Layanan belum terhubung. Muat ulang halaman.'));
+    const id=crypto.randomUUID();
+    const timeout=setTimeout(()=>{pending.delete(id);reject(new Error(payload.action==='submit'?'Konfirmasi belum diterima. Klik kirim kembali untuk memeriksa; pengajuan yang sudah tersimpan tidak akan digandakan.':'Layanan belum merespons. Silakan coba kembali.'));},65000);
+    pending.set(id,{resolve,reject,timeout});
+    peer.postMessage({channel,type:'request',id,payload},peerOrigin);
   });
-
-  function perbaruiPeriodePangkat() {
-    // Ambil bulan dan tahun berjalan berdasarkan WIB.
-    const bagianTanggal = formatTanggalWIB.formatToParts(new Date());
-
-    const tahun = Number(
-      bagianTanggal.find(function (bagian) {
-        return bagian.type === "year";
-      }).value
-    );
-
-    // Indeks bulan: Januari = 0, Desember = 11.
-    const bulan = Number(
-      bagianTanggal.find(function (bagian) {
-        return bagian.type === "month";
-      }).value
-    ) - 1;
-
-    // Periode pangkat selalu 2 bulan setelah bulan berjalan.
-    // Pergantian tahun dihitung otomatis.
-    const bulanPeriode = (bulan + 2) % 12;
-    const tahunPeriode = tahun + Math.floor((bulan + 2) / 12);
-
-    document.getElementById("periode-pangkat").textContent =
-      "Periode " + namaBulan[bulanPeriode] + " " + tahunPeriode;
-
-    // Jadwal pengajuan tanggal 10–20 pada bulan berjalan.
-    document.getElementById("jadwal-pangkat").textContent =
-      "Buka: 10 " + namaBulan[bulan] + " " + tahun +
-      " | Tutup: 20 " + namaBulan[bulan] + " " + tahun;
+}
+window.addEventListener('message',async event=>{
+  const m=event.data;
+  if(!m || m.channel!==channel || !/^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/.test(event.origin))return;
+  if(m.type==='ready' && !peer){
+    peer=event.source;peerOrigin=event.origin;clearTimeout(connectTimeout);
+    try{const data=await rpc({action:'init'});period=data.periode;$('periode').textContent=period;$('nama').disabled=false;status('Layanan siap. Silakan cari nama Anda.');}
+    catch(e){$('periode').textContent='Belum tersedia';status(e.message,true);$('retry').hidden=false;}
+  }else if(m.type==='response' && event.source===peer && event.origin===peerOrigin){
+    const task=pending.get(m.id);if(!task)return;clearTimeout(task.timeout);pending.delete(m.id);
+    m.ok?task.resolve(m.data):task.reject(new Error(m.error));
   }
-
-  // Perbarui langsung saat halaman dibuka.
-  perbaruiPeriodePangkat();
-
-  // Periksa setiap menit jika halaman tetap terbuka
-  // ketika terjadi pergantian bulan.
-  setInterval(perbaruiPeriodePangkat, 60000);
-
-  // Perbarui ketika pengguna kembali ke tab.
-  document.addEventListener("visibilitychange", function () {
-    if (!document.hidden) {
-      perbaruiPeriodePangkat();
-    }
-  });
-})();
+});
+$('nama').addEventListener('input',()=>{
+  clearTimeout(timer);const seq=++sequence;clearIdentity();closeResults();
+  const q=$('nama').value.trim();if(q.length<2){status('Ketik minimal 2 huruf untuk mencari nama.');return;}
+  status('Mencari pegawai…');
+  timer=setTimeout(async()=>{
+    try{
+      const list=await rpc({action:'search',q});if(seq!==sequence || busy)return;
+      $('results').replaceChildren();
+      if(!list.length){const e=document.createElement('div');e.className='empty';e.textContent='Nama tidak ditemukan. Coba bagian nama lainnya.';$('results').append(e);}
+      list.forEach(p=>{
+        const b=document.createElement('button');b.type='button';
+        const name=document.createElement('strong');name.textContent=p.nama;
+        const detail=document.createElement('small');detail.textContent=p.nip+' · '+(p.jab||'Jabatan belum diisi');
+        b.append(name,detail);b.onclick=()=>{++sequence;selected=p;$('nama').value=p.nama;['nip','gol','jab'].forEach(k=>$(k).textContent=p[k]||'—');closeResults();status('Periksa identitas dan periode sebelum mengirim.');readyButton();$('submit').focus();};
+        $('results').append(b);
+      });
+      $('results').hidden=false;$('nama').setAttribute('aria-expanded','true');status(list.length?'Pilih nama yang sesuai. Maksimal 15 hasil ditampilkan.':'Coba kata pencarian lainnya.');
+    }catch(e){if(seq===sequence)status(e.message,true);}
+  },350);
+});
+$('nama').addEventListener('keydown',e=>{if(e.key==='ArrowDown'&&!$('results').hidden){e.preventDefault();$('results').querySelector('button')?.focus();}if(e.key==='Enter')e.preventDefault();});
+$('results').addEventListener('keydown',e=>{const buttons=[...$('results').querySelectorAll('button')];const i=buttons.indexOf(document.activeElement);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();buttons[(i+(e.key==='ArrowDown'?1:-1)+buttons.length)%buttons.length]?.focus();}if(e.key==='Escape'){closeResults();$('nama').focus();}});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))closeResults();});
+$('form').addEventListener('submit',async e=>{
+  e.preventDefault();if(busy||!selected||!period)return;
+  busy=true;++sequence;clearTimeout(timer);closeResults();readyButton();$('nama').disabled=true;$('submit').textContent='Menyimpan pengajuan…';status('Mohon tunggu konfirmasi penyimpanan.');
+  try{
+    const r=await rpc({action:'submit',nip:selected.nip,periode:period});
+    $('saved-name').textContent=r.nama;$('saved-period').textContent=r.periode;$('saved-time').textContent=r.waktu;
+    $('success-title').textContent=r.existing?'Pengajuan sudah tercatat':'Pengajuan berhasil';
+    $('success-note').textContent=r.existing?'Pengajuan Anda pada periode ini sudah tersimpan. Tidak ada data ganda yang ditambahkan.':'Pengajuan rekomendasi Anda telah tercatat untuk ditindaklanjuti oleh pengelola kepegawaian.';
+    $('form').hidden=true;$('success').hidden=false;status('');$('again').focus();
+  }catch(e){status(e.message,true);$('retry').hidden=false;}
+  finally{busy=false;$('nama').disabled=false;$('submit').textContent='Ajukan Rekomendasi Pangkat →';readyButton();}
+});
+$('again').onclick=()=>location.reload();$('retry').onclick=()=>location.reload();
+const connectTimeout=setTimeout(()=>{if(!peer){$('periode').textContent='Belum terhubung';status('Belum terhubung ke GAS. Periksa URL /exec dan akses deployment Anyone, lalu muat ulang.',true);$('retry').hidden=false;}},30000);
+if(/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(GAS_URL)){
+  $('bridge').src=GAS_URL+'?channel='+encodeURIComponent(channel);
+}else{clearTimeout(connectTimeout);$('periode').textContent='Perlu konfigurasi';status('Isi GAS_URL di index.html dengan URL Web App hasil deploy.',true);}
 </script>
-
-</body>
-</html>
+</body></html>
