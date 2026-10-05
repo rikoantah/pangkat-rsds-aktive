@@ -36,6 +36,23 @@ h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-
 .back-row{max-width:1056px;margin:12px auto 0;padding:0 4px}
 .back{border:1px solid var(--line);background:white;color:var(--green);padding:11px 16px;border-radius:10px;font-size:13px}
 @media(max-width:720px){.home{padding:28px 24px}.home h1{font-size:28px}.menu-grid{grid-template-columns:1fr}.menu-card{padding:20px;min-height:78px}.back-row{margin:8px 14px 14px;padding:0}}
+
+.main-steps{gap:18px;margin-top:24px}
+.step-card{align-items:flex-start;min-height:190px;padding:25px}
+.step-card strong{display:block;font-size:20px;line-height:1.35}
+.step-label{display:inline-block;font-size:11px;letter-spacing:1.5px;margin-bottom:17px;font-weight:750;color:var(--green)}
+.step-card.featured .step-label{color:var(--gold)}
+.menu-card p{font-size:13px;font-weight:400;line-height:1.7;margin:10px 0 0;color:var(--muted)}
+.step-card.featured p{color:#e0eee8}
+.step-card>span{margin-top:32px}
+.supporting{margin-top:32px;padding-top:26px;border-top:1px solid var(--line)}
+.supporting h2{font-size:18px;letter-spacing:0;margin-bottom:8px}
+.supporting .hint{margin-bottom:0;font-size:12px}
+.supporting-grid{margin-top:16px;gap:12px}
+.document-card{padding:18px 20px;min-height:100px;background:white;font-size:14px}
+.document-card p{font-size:12px;margin-top:6px}
+.menu-card:focus-visible{outline:3px solid #be902d;outline-offset:4px}
+@media(max-width:720px){.step-card{min-height:0;padding:22px}.step-card strong{font-size:19px}.step-label{margin-bottom:12px}.supporting{margin-top:26px}.document-card{min-height:0}}
 </style>
 </head>
 <body>
@@ -43,13 +60,19 @@ h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-
 <main id="home" class="home">
 <div class="eyebrow">Layanan kepegawaian</div>
 <h1>Layanan Kenaikan Pangkat</h1>
-<p class="hint">Pilih layanan yang ingin Anda akses.</p>
-<nav class="menu-grid" aria-label="Layanan kenaikan pangkat">
-<button class="menu-card featured" id="open-rekom" type="button" aria-controls="rekom" aria-expanded="false">Ajukan Rekom Pangkat <span aria-hidden="true">→</span></button>
-<button class="menu-card" id="open-bkd" type="button">Ajukan ke BKD <span aria-hidden="true">↗</span></button>
-<button class="menu-card" id="open-persyaratan" type="button">Persyaratan <span aria-hidden="true">↗</span></button>
-<button class="menu-card" id="open-atasan" type="button">Surat Atasan <span aria-hidden="true">↗</span></button>
+<p class="hint">Ikuti dua langkah pengajuan berikut secara berurutan.</p>
+<nav class="menu-grid main-steps" aria-label="Tahapan pengajuan kenaikan pangkat">
+<button class="menu-card featured step-card" id="open-rekom" type="button" aria-controls="rekom" aria-expanded="false"><div><small class="step-label">LANGKAH 1</small><strong>Ajukan Rekom Pangkat</strong><p>Ajukan rekomendasi kenaikan pangkat melalui layanan kepegawaian.</p></div><span aria-hidden="true">→</span></button>
+<button class="menu-card step-card" id="open-bkd" type="button"><div><small class="step-label">LANGKAH 2</small><strong>Ajukan ke BKD</strong><p>Setelah memperoleh rekomendasi dari OPD, ajukan ke BKD dan pantau status pengajuan Anda.</p></div><span aria-hidden="true">↗</span></button>
 </nav>
+<section class="supporting" aria-labelledby="support-title">
+<h2 id="support-title">Dokumen Pelengkap</h2>
+<p class="hint">Buka dokumen persyaratan dan file surat keterangan atasan untuk melengkapi berkas pengajuan.</p>
+<nav class="menu-grid supporting-grid" aria-label="Dokumen pelengkap pengajuan">
+<button class="menu-card document-card" id="open-persyaratan" type="button"><div><strong>Persyaratan</strong><p>Lihat dokumen persyaratan kenaikan pangkat.</p></div><span aria-hidden="true">↗</span></button>
+<button class="menu-card document-card" id="open-atasan" type="button"><div><strong>Surat Keterangan Atasan</strong><p>Buka file surat keterangan atasan.</p></div><span aria-hidden="true">↗</span></button>
+</nav>
+</section>
 <p id="menu-status" class="status" role="status" aria-live="polite"></p>
 </main>
 <div id="back-row" class="back-row" hidden><button type="button" class="back" id="back-menu">← Kembali ke menu utama</button></div>
@@ -72,12 +95,11 @@ h2{font-size:24px;letter-spacing:-.6px;margin:0 0 7px}.hint{font-size:13px;line-
 <script>
 // GANTI DENGAN URL WEB APP GAS HASIL DEPLOY, BERAKHIR /exec.
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDrrkzhimLqL-th7YTEg2A-MkY9yaIKu8nL0T6xHt4P0xPaGh6jEhxbpK3HXXQ6SwL/exec';
-// Isi dengan URL asli ketiga layanan dari halaman lama.
-// URL tidak tersedia dalam lampiran, sehingga sengaja tidak ditebak.
+// Tautan asli dipulihkan dari versi sebelumnya pada repositori GitHub.
 const MENU_LINKS = {
-  bkd: '',          // URL Ajukan ke BKD
-  persyaratan: '',  // URL Persyaratan
-  atasan: ''        // URL Surat Atasan
+  bkd: 'https://script.google.com/macros/s/AKfycbw3FKn81TKGYsN657-z88fOSMkkKz9fC244pSjF0mvEeC-x4a_4-s6LjP4s9RJxVxMXbg/exec',          // URL Ajukan ke BKD
+  persyaratan: 'https://docs.google.com/document/d/1SFo9pxt9AgBlNqqcqYesyBoitdNWnAcFbEkAIibr2C0/export?format=pdf',  // URL Persyaratan
+  atasan: 'https://script.google.com/macros/s/AKfycbzOvVDZYZw5sXIfRrwaczkACMSpQQiGEoYxmvpMBjVUfpc6JKFegDCKRsP7v14bRBL2/exec'        // URL Surat Atasan
 };
 const $ = id => document.getElementById(id);
 const channel = crypto.randomUUID();
